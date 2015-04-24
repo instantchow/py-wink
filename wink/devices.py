@@ -356,6 +356,7 @@ class piggy_bank(DeviceBase, Sharable):
 
 
 class sensor_pod(DeviceBase, Sharable):
+    """ GE + Spotter is sensor_pod """
     
     non_config_fields = [
 		"locale",
@@ -388,6 +389,10 @@ class sensor_pod(DeviceBase, Sharable):
         ("name", str),
     ]
     
+    def update(self):
+        """ get fresh data from the sensors """
+        self.data = self.get()
+        
     def get_temperature(self):
         return self.data['last_reading']['temperature']
     
