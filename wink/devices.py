@@ -356,4 +356,51 @@ class piggy_bank(DeviceBase, Sharable):
 
 
 class sensor_pod(DeviceBase, Sharable):
-    pass
+    
+    non_config_fields = [
+		"locale",
+		"device_manufacturer",
+		"serial",
+		"upc_id",
+		"uuid",
+		"capabilities",
+		"sensor_pod_id",
+		#"location",
+		"mac_address",
+		"units",
+		#"desired_state",
+		"last_reading",
+		"radio_type",
+		#"lat_lng",
+		"manufacturer_device_id",
+		"manufacturer_device_model",
+		"hidden_at",
+		#"gang_id",
+		#"name",
+		"last_event",
+		#"hub_id",
+		"created_at",
+		"triggers",
+		#"local_id",
+		"model_name",
+    ]
+    mutable_fields = [
+        ("name", str),
+    ]
+    
+    def get_temperature(self):
+        return self.data['last_reading']['temperature']
+    
+    def get_temperature_updated_at(self):
+        return self.data['last_reading']['temperature_updated_at']
+    
+    def get_humidity(self):
+        return self.data['last_reading']['humidity']
+    
+    def get_humidity_updated_at(self):
+        return self.data['last_reading']['humidity_updated_at']
+        
+    def get_last_reading(self):
+        return self.data['last_reading']
+        
+    
